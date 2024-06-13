@@ -1,0 +1,30 @@
+server:
+  port: 8081
+  ssl:
+    key-store: classpath:keystore.p12
+    key-store-password: changeit
+    key-store-type: PKCS12
+    key-alias: tomcat
+
+spring:
+  application:
+    name: platforma-consiliere
+  datasource:
+    password: postgres
+    url: jdbc:postgresql://localhost:5431/spring-security-jwt
+    username: postgres
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: false
+  liquibase:
+    change-log: 'classpath:/db/changelog-master.yaml'
+
+authentication:
+  secret-key: 3jhkm123bfbnfeiu12br21ui34b1uifvbw2ru23rbuhr1e4j3k12hjhfbw312onmefvoi3e2nr2394h
+  access-token:
+    expiration-in-seconds: 1800
+  refresh-token:
+    expiration-in-seconds: 86400
