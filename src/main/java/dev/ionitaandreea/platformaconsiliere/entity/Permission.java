@@ -26,4 +26,5 @@ public class Permission {
     private String description;
 
     private boolean requiresVerification;
+
 }

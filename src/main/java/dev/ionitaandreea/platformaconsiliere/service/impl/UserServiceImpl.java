@@ -57,4 +57,11 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.findAll(pageable).map(Mapper::toUserResponse);
     }
+
+    @Override
+    public User getUserById(Long id) {
+        return userRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+    }
+
+
 }

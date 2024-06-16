@@ -30,6 +30,9 @@ public class UserRegistrationRequest {
     @NotNull(message = "Phone number is required")
     private String phoneNumber;
 
+    @NotNull(message = "Faculty is required")
+    private String faculty;
+
     @NotNull(message = "User type is required")
     @Enumerated(EnumType.STRING)
     private UserType type;

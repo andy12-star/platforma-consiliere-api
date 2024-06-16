@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -26,4 +28,6 @@ public class Notes {
 
     @ManyToOne
     private User user;
+
+    private LocalDateTime createdAt;
 }

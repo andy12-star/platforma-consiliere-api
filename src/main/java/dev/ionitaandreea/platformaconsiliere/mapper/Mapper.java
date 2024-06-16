@@ -1,12 +1,16 @@
 package dev.ionitaandreea.platformaconsiliere.mapper;
 
 import dev.ionitaandreea.platformaconsiliere.dto.CustomUserDetails;
+import dev.ionitaandreea.platformaconsiliere.dto.request.NotesRequest;
+import dev.ionitaandreea.platformaconsiliere.dto.response.NotesResponse;
 import dev.ionitaandreea.platformaconsiliere.dto.response.RoleResponse;
 import dev.ionitaandreea.platformaconsiliere.dto.response.UserResponse;
+import dev.ionitaandreea.platformaconsiliere.entity.Notes;
 import dev.ionitaandreea.platformaconsiliere.entity.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,5 +57,24 @@ public class Mapper {
 
         userResponse.setRoles(roles);
         return userResponse;
+    }
+
+    public static Notes toNotes(NotesRequest notesRequest, User user) {
+        return Notes.builder()
+                .id(notesRequest.getId())
+                .title(notesRequest.getTitle())
+                .notes(notesRequest.getNotes())
+                .user(user)
+                .createdAt(LocalDateTime.now())
+                .build();
+    }
+
+    public static NotesResponse toNotesResponse(Notes notes) {
+        return NotesResponse.builder()
+                .id(notes.getId())
+                .title(notes.getTitle())
+                .notes(notes.getNotes())
+                .createdAt(notes.getCreatedAt())
+                .build();
     }
 }
