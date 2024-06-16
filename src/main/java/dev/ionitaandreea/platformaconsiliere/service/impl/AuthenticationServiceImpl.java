@@ -49,7 +49,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 request.getPassword()
         ));
 
-        User user = userRepository.findByUsername(authentication.getName()).get();
+        User user = userRepository.findByUsername(authentication.getName()).orElseThrow();
         CustomUserDetails userDetails = Mapper.toCustomUserDetails(user);
 
         String accessToken = jwtService.generateAccessToken(userDetails);
@@ -64,6 +64,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .refreshToken(refreshToken)
                 .tokenType("bearer")
                 .expiresIn(authenticationProperties.getAccessToken().getExpirationInSeconds())
+                .user(Mapper.toUserResponse(user))
                 .build();
     }
 

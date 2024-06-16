@@ -18,4 +18,6 @@ public class AuthenticationResponse {
     private Integer expiresIn;
 
     private String refreshToken;
+
+    private UserResponse user;
 }
