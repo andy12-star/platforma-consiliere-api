@@ -11,7 +11,7 @@ spring:
     name: platforma-consiliere
   datasource:
     password: postgres
-    url: jdbc:postgresql://localhost:5431/spring-security-jwt
+    url: jdbc:postgresql://localhost:5431/platforma-consiliere
     username: postgres
   jpa:
     properties:
@@ -28,3 +28,7 @@ authentication:
     expiration-in-seconds: 1800
   refresh-token:
     expiration-in-seconds: 86400
+
+logging:
+  level:
+    org.springframework.security: DEBUG

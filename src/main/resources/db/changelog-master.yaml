@@ -5,3 +5,19 @@ databaseChangeLog:
   - include:
       file: changelog/v1-init-data.sql
       relativeToChangelogFile: true
+  - include:
+      file: changelog/consultation.sql
+      relativeToChangelogFile: true
+  - include:
+      file: changelog/appointment.sql
+      relativeToChangelogFile: true
+  - include:
+      file: changelog/note.sql
+      relativeToChangelogFile: true
+  - include:
+      file: changelog/contact.sql
+      relativeToChangelogFile: true
+  - include:
+      file: changelog/alterUserAddFacultyColumn.sql
+      relativeToChangelogFile: true
+

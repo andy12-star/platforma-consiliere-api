@@ -30,6 +30,8 @@ public class User {
 
     private String phoneNumber;
 
+    private String faculty;
+
     @JsonIgnore
     @NotNull(message = "Password is required")
     private String password;
