@@ -19,16 +19,6 @@ public class Consultation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String status;
-
-    @ManyToOne
-    private User patient;
-
-    @ManyToOne
-    private User doctor;
-
-    private String services;
-
     private int duration;
 
     private String observations;

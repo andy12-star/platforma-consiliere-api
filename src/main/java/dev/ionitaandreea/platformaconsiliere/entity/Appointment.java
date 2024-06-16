@@ -1,6 +1,8 @@
 package dev.ionitaandreea.platformaconsiliere.entity;
 
 
+import dev.ionitaandreea.platformaconsiliere.enums.AppointmentType;
+import dev.ionitaandreea.platformaconsiliere.enums.TokenType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -26,6 +28,10 @@ public class Appointment {
     @ManyToOne
     private User patient;
 
+    @Enumerated(EnumType.STRING)
+    @NotNull(message = "Appointemt type is required")
+    private AppointmentType appointmentType;
+
     @NotNull
     private String specialization;
 
@@ -38,6 +44,12 @@ public class Appointment {
 
     @NotNull
     private String location;
+
+    @OneToOne
+    private Consultation consultation;
+
+    @NotNull
+    private int hour;
 
 }
 

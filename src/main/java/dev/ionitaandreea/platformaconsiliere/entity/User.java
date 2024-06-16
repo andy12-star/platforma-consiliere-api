@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 @Data
@@ -39,6 +40,9 @@ public class User {
     @Column(unique = true)
     @NotNull(message = "Username is required")
     private String username;
+
+    @NotNull(message = "Date of Birth is required")
+    private LocalDate dateOfBirth;
 
     private boolean accountNonExpired;
 

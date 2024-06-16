@@ -2,9 +2,11 @@ package dev.ionitaandreea.platformaconsiliere.mapper;
 
 import dev.ionitaandreea.platformaconsiliere.dto.CustomUserDetails;
 import dev.ionitaandreea.platformaconsiliere.dto.request.NotesRequest;
+import dev.ionitaandreea.platformaconsiliere.dto.response.AppointmentResponse;
 import dev.ionitaandreea.platformaconsiliere.dto.response.NotesResponse;
 import dev.ionitaandreea.platformaconsiliere.dto.response.RoleResponse;
 import dev.ionitaandreea.platformaconsiliere.dto.response.UserResponse;
+import dev.ionitaandreea.platformaconsiliere.entity.Appointment;
 import dev.ionitaandreea.platformaconsiliere.entity.Notes;
 import dev.ionitaandreea.platformaconsiliere.entity.User;
 import org.springframework.beans.BeanUtils;
@@ -75,6 +77,16 @@ public class Mapper {
                 .title(notes.getTitle())
                 .notes(notes.getNotes())
                 .createdAt(notes.getCreatedAt())
+                .build();
+    }
+
+    public static AppointmentResponse toAppointmentResponse(Appointment appointment){
+        return AppointmentResponse.builder()
+                .id(appointment.getId())
+                .location(appointment.getLocation())
+                .specialization(appointment.getSpecialization())
+                .hour(appointment.getHour())
+                .date(appointment.getDate())
                 .build();
     }
 }

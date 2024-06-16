@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -32,6 +34,9 @@ public class UserRegistrationRequest {
 
     @NotNull(message = "Faculty is required")
     private String faculty;
+
+    @NotNull(message = "Date of Birth is required")
+    private LocalDate dateOfBirth;
 
     @NotNull(message = "User type is required")
     @Enumerated(EnumType.STRING)

@@ -23,4 +23,7 @@ databaseChangeLog:
   - include:
       file: changelog/addCreatedAtToNotes.sql
       relativeToChangelogFile: true
+  - include:
+      file: changelog/AddDateOfBirthUser.sql
+      relativeToChangelogFile: true
 
