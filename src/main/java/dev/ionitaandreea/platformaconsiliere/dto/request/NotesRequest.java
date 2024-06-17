@@ -25,4 +25,5 @@ public class NotesRequest {
 
     @NotNull(message = "UserId is required")
     private Long userId;
+
 }

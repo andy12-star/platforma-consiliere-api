@@ -1,6 +1,7 @@
 package dev.ionitaandreea.platformaconsiliere.mapper;
 
 import dev.ionitaandreea.platformaconsiliere.dto.CustomUserDetails;
+import dev.ionitaandreea.platformaconsiliere.dto.request.AppointmentRequest;
 import dev.ionitaandreea.platformaconsiliere.dto.request.NotesRequest;
 import dev.ionitaandreea.platformaconsiliere.dto.response.AppointmentResponse;
 import dev.ionitaandreea.platformaconsiliere.dto.response.NotesResponse;
@@ -79,6 +80,20 @@ public class Mapper {
                 .createdAt(notes.getCreatedAt())
                 .build();
     }
+
+    public static Appointment toAppointment(AppointmentRequest appointmentRequest, User patient, User doctor){
+        return Appointment.builder()
+                .id(appointmentRequest.getId())
+                .appointmentType(appointmentRequest.getAppointmentType())
+                .specialization(appointmentRequest.getSpecialization())
+                .date(appointmentRequest.getDate())
+                .hour(appointmentRequest.getHour())
+                .patient(patient)
+                .doctor(doctor)
+                .consultation(appointmentRequest.getConsultation())
+                .build();
+    }
+
 
     public static AppointmentResponse toAppointmentResponse(Appointment appointment){
         return AppointmentResponse.builder()

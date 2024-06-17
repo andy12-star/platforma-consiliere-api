@@ -24,7 +24,7 @@ public class AppointmentRequest {
     @NotNull(message="PatientId is required")
     private Long patientId;
 
-    @NotNull(message = "Appointemt type is required")
+    @NotNull(message = "Appointment type is required")
     private AppointmentType appointmentType;
 
     @NotNull(message="DoctorId is required")
@@ -48,6 +48,8 @@ public class AppointmentRequest {
     private Consultation consultation;
 
     @NotNull(message = "Hour is required")
-   private int hour;
+    private int hour;
+
+
 
 }
