@@ -31,15 +31,15 @@ public class AppointmentController {
     @DeleteMapping("{appointmentId}")
     public ResponseEntity<?> deleteAppointment(@PathVariable Long appointmentId) {
         appointmentService.deleteAppointment(appointmentId);
-        return ResponseEntity.status(200).body("Appointment deleted succeddfully!");
+        return ResponseEntity.status(200).body("Appointment deleted successfully!");
     }
 
-    @GetMapping({"{patientId}"})
+    @GetMapping({"/patient/{patientId}"})
     public ResponseEntity<?> getAllAppointmentsForPatient(@PathVariable Long patientId){
         return  ResponseEntity.ok(appointmentService.getAllAppointmentsByPatientId(patientId));
     }
 
-    @GetMapping("{doctorId}")
+    @GetMapping("/doctor/{doctorId}")
     public ResponseEntity<?> getAllAppointmentsForDoctor(@PathVariable Long doctorId){
         return ResponseEntity.ok(appointmentService.getAllAppointmentsByDoctorId(doctorId));
     }

@@ -11,13 +11,23 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AppointmentResponse {
+public class ConsultationResponse {
 
     private Long id;
 
-    private String location;
+    private int duration;
+
+    private String observations;
+
+    private String recommendations;
+
+    private String doctorName;
+
+    private String patientName;
 
     private String specialization;
 
     private LocalDateTime date;
+
 }
+

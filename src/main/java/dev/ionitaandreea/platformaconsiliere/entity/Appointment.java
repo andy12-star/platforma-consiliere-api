@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "appointemnts")
+@Table(name = "appointments")
 public class Appointment {
 
     @Id
@@ -29,7 +29,7 @@ public class Appointment {
     private User patient;
 
     @Enumerated(EnumType.STRING)
-    @NotNull(message = "Appointemt type is required")
+    @NotNull(message = "Appointment type is required")
     private AppointmentType appointmentType;
 
     @NotNull
@@ -45,11 +45,7 @@ public class Appointment {
     @NotNull
     private String location;
 
-    @OneToOne
-    private Consultation consultation;
 
-    @NotNull
-    private int hour;
 
 }
 

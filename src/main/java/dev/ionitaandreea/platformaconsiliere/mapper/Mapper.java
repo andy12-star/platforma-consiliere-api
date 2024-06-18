@@ -2,12 +2,11 @@ package dev.ionitaandreea.platformaconsiliere.mapper;
 
 import dev.ionitaandreea.platformaconsiliere.dto.CustomUserDetails;
 import dev.ionitaandreea.platformaconsiliere.dto.request.AppointmentRequest;
+import dev.ionitaandreea.platformaconsiliere.dto.request.ConsultationRequest;
 import dev.ionitaandreea.platformaconsiliere.dto.request.NotesRequest;
-import dev.ionitaandreea.platformaconsiliere.dto.response.AppointmentResponse;
-import dev.ionitaandreea.platformaconsiliere.dto.response.NotesResponse;
-import dev.ionitaandreea.platformaconsiliere.dto.response.RoleResponse;
-import dev.ionitaandreea.platformaconsiliere.dto.response.UserResponse;
+import dev.ionitaandreea.platformaconsiliere.dto.response.*;
 import dev.ionitaandreea.platformaconsiliere.entity.Appointment;
+import dev.ionitaandreea.platformaconsiliere.entity.Consultation;
 import dev.ionitaandreea.platformaconsiliere.entity.Notes;
 import dev.ionitaandreea.platformaconsiliere.entity.User;
 import org.springframework.beans.BeanUtils;
@@ -19,7 +18,7 @@ import java.util.List;
 
 public class Mapper {
 
-    public static CustomUserDetails toCustomUserDetails(User user){
+    public static CustomUserDetails toCustomUserDetails(User user) {
 
         CustomUserDetails customUserDetails = new CustomUserDetails();
         BeanUtils.copyProperties(user, customUserDetails);
@@ -29,10 +28,10 @@ public class Mapper {
         user.getRoles().forEach(r -> {
             authorities.add(new SimpleGrantedAuthority(r.getName().getValue()));
 
-            r.getPermissions().forEach(p ->  {
-                if(user.isVerified()){
+            r.getPermissions().forEach(p -> {
+                if (user.isVerified()) {
                     authorities.add(new SimpleGrantedAuthority(p.getName()));
-                }else if(!p.isRequiresVerification()){
+                } else if (!p.isRequiresVerification()) {
                     authorities.add(new SimpleGrantedAuthority(p.getName()));
                 }
             });
@@ -81,27 +80,52 @@ public class Mapper {
                 .build();
     }
 
-    public static Appointment toAppointment(AppointmentRequest appointmentRequest, User patient, User doctor){
+    public static Appointment toAppointment(AppointmentRequest appointmentRequest, User patient, User doctor) {
         return Appointment.builder()
                 .id(appointmentRequest.getId())
                 .appointmentType(appointmentRequest.getAppointmentType())
                 .specialization(appointmentRequest.getSpecialization())
                 .date(appointmentRequest.getDate())
-                .hour(appointmentRequest.getHour())
                 .patient(patient)
                 .doctor(doctor)
-                .consultation(appointmentRequest.getConsultation())
+                .location(appointmentRequest.getLocation())
                 .build();
     }
 
 
-    public static AppointmentResponse toAppointmentResponse(Appointment appointment){
+    public static AppointmentResponse toAppointmentResponse(Appointment appointment) {
         return AppointmentResponse.builder()
                 .id(appointment.getId())
                 .location(appointment.getLocation())
                 .specialization(appointment.getSpecialization())
-                .hour(appointment.getHour())
                 .date(appointment.getDate())
+                .build();
+    }
+
+    public static Consultation toConsultation(ConsultationRequest consultationRequest, Appointment appointment) {
+        return Consultation.builder()
+                .id(consultationRequest.getId())
+                .recommendations(consultationRequest.getRecommendations())
+                .observations(consultationRequest.getObservations())
+                .duration(consultationRequest.getDuration())
+                .appointment(appointment)
+                .build();
+    }
+
+    public static ConsultationResponse toConsultationResponse(Consultation consultation) {
+         String doctorName = consultation.getAppointment().getDoctor().getFirstName()
+                + " " + consultation.getAppointment().getDoctor().getLastName();
+         String patientName= consultation.getAppointment().getPatient().getFirstName()
+                 + " " + consultation.getAppointment().getPatient().getLastName();
+        return ConsultationResponse.builder()
+                .id(consultation.getId())
+                .recommendations(consultation.getRecommendations())
+                .observations(consultation.getObservations())
+                .duration(consultation.getDuration())
+                .doctorName(doctorName)
+                .patientName(patientName)
+                .date(consultation.getAppointment().getDate())
+                .specialization(consultation.getAppointment().getSpecialization())
                 .build();
     }
 }

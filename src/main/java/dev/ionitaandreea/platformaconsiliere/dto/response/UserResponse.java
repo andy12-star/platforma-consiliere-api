@@ -28,7 +28,6 @@ public class UserResponse {
 
     private LocalDate dateOfBirth;
 
-
     private boolean verified;
 
     private List<RoleResponse> roles;

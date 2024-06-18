@@ -15,4 +15,6 @@ public interface AppointmentService {
 
     List<AppointmentResponse> getAllAppointmentsByDoctorId(Long doctorId);
 
+    Appointment getAppointmentById(Long id);
+
 }

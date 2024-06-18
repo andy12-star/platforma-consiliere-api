@@ -25,4 +25,8 @@ public class Consultation {
 
     private String recommendations;
 
+    @OneToOne
+    private Appointment appointment;
+
+
 }

@@ -26,4 +26,13 @@ databaseChangeLog:
   - include:
       file: changelog/AddDateOfBirthUser.sql
       relativeToChangelogFile: true
+  - include:
+      file: changelog/deleteHourColumnFromAppt.sql
+      relativeToChangelogFile: true
+  - include:
+      file: changelog/deleteConsultationFromAppointment.sql
+      relativeToChangelogFile: true
+  - include:
+      file: changelog/addAppointmentToConsultation.sql
+      relativeToChangelogFile: true
 

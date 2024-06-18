@@ -16,6 +16,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     private final AppointmentRepository appointmentRepository;
 
+
     @Override
     public Appointment saveAppointment(Appointment appointment) {
         return appointmentRepository.save(appointment);
@@ -38,6 +39,11 @@ public class AppointmentServiceImpl implements AppointmentService {
                 .map(Mapper::toAppointmentResponse).toList();
     }
 
+    @Override
+    public Appointment getAppointmentById(Long id) {
+        return appointmentRepository.findById(id).orElseThrow();
+
+    }
 
 
 }
