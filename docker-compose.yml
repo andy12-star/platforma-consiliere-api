@@ -1,6 +1,6 @@
 services:
   postgres:
-    container_name: postgres
+    container_name: postgres-platforma-consiliere
     image: postgres
     environment:
       POSTGRES_USER: postgres
@@ -16,7 +16,7 @@ services:
     restart: unless-stopped
 
   pgadmin:
-    container_name: pgadmin
+    container_name: pgadmin-platforma-consiliere
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
@@ -25,7 +25,7 @@ services:
     volumes:
       - pgadmin:/var/lib/pgadmin
     ports:
-      - "5050:80"
+      - "5051:81"
     networks:
       - postgres
     restart: unless-stopped

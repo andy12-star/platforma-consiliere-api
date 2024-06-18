@@ -36,4 +36,14 @@ public class ConsultationController {
         return ResponseEntity.status(200).body("Consultation deteled successfully");
     }
 
+    @GetMapping("/doctor/{doctorId}")
+    public ResponseEntity <?> getAllConsultationByDoctor(@PathVariable Long doctorId){
+        return ResponseEntity.ok(consultationService.getAllConsultationsByDoctorId(doctorId));
+    }
+
+    @GetMapping("/patient/{patientId}")
+    public ResponseEntity <?> getAllConsultationByPatient(@PathVariable Long patientId){
+        return ResponseEntity.ok(consultationService.getAllConsultationsByPatientId(patientId));
+    }
+
 }

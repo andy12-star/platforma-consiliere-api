@@ -1,5 +1,6 @@
 package dev.ionitaandreea.platformaconsiliere.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import dev.ionitaandreea.platformaconsiliere.enums.UserType;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -36,6 +37,7 @@ public class UserRegistrationRequest {
     private String faculty;
 
     @NotNull(message = "Date of Birth is required")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
 
     @NotNull(message = "User type is required")

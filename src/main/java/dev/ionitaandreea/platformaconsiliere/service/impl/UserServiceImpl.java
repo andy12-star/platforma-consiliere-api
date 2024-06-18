@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService {
                 .username(userRegistrationRequest.getEmail())
                 .password(passwordEncoder.encode(userRegistrationRequest.getPassword()))
                 .phoneNumber(userRegistrationRequest.getPhoneNumber())
+                .dateOfBirth(userRegistrationRequest.getDateOfBirth())
                 .roles(Collections.singleton(role))
                 .accountNonExpired(true)
                 .accountNonLocked(true)

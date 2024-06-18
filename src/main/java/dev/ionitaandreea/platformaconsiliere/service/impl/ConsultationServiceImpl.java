@@ -2,6 +2,7 @@ package dev.ionitaandreea.platformaconsiliere.service.impl;
 
 import dev.ionitaandreea.platformaconsiliere.dto.response.ConsultationResponse;
 import dev.ionitaandreea.platformaconsiliere.entity.Consultation;
+import dev.ionitaandreea.platformaconsiliere.mapper.Mapper;
 import dev.ionitaandreea.platformaconsiliere.repository.ConsultationRepository;
 import dev.ionitaandreea.platformaconsiliere.service.api.ConsultationService;
 import lombok.RequiredArgsConstructor;
@@ -28,12 +29,14 @@ public class ConsultationServiceImpl implements ConsultationService {
 
     @Override
     public List<ConsultationResponse> getAllConsultationsByPatientId(Long patientId) {
-return List.of();
+        return consultationRepository.findAllByAppointment_Patient_Id(patientId).stream()
+                .map(Mapper::toConsultationResponse).toList();
     }
 
     @Override
     public List<ConsultationResponse> getAllConsultationsByDoctorId(Long doctorId) {
-        return List.of();
+        return consultationRepository.findAllByAppointment_Doctor_Id(doctorId).stream()
+                .map(Mapper::toConsultationResponse).toList();
     }
 
 

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/appointment")
 @RequiredArgsConstructor
-@PreAuthorize("hasAuthority('users:read') or hasAuthority('medic:read')")
+@PreAuthorize("hasAuthority('users:read') or hasAuthority('doctor:read')")
 public class AppointmentController {
 
     private final AppointmentService appointmentService;
