@@ -18,7 +18,8 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role getRoleByUserType(UserType userType) {
         RoleName roleName = switch (userType) {
-            case CUSTOMER -> RoleName.ROLE_CUSTOMER;
+            case USER -> RoleName.ROLE_USER;
+            case DOCTOR -> RoleName.ROLE_DOCTOR;
             case ADMIN -> RoleName.ROLE_ADMIN;
         };
 

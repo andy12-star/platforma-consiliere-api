@@ -35,4 +35,7 @@ databaseChangeLog:
   - include:
       file: changelog/alterConsultationDropPatientIdDoctorIdAndServices.sql
       relativeToChangelogFile: true
+  - include:
+      file: changelog/createAdditionalRoles.sql
+      relativeToChangelogFile: true
 

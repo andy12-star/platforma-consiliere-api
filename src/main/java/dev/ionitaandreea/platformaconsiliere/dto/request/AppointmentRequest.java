@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class AppointmentRequest {
 
- @NotNull(message="Id is required")
+
     private Long id;
 
     @NotNull(message="PatientId is required")
@@ -39,9 +39,4 @@ public class AppointmentRequest {
     private LocalDateTime date;
 
     private String location;
-
-
-
-
-
 }

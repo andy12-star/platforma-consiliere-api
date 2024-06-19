@@ -1,5 +1,5 @@
 package dev.ionitaandreea.platformaconsiliere.enums;
 
 public enum AppointmentType {
-    CONFIRMED, UNCONFIRMED, HONORED, UNHONORED
+    CONFIRMED, UNCONFIRMED, HONORED, UNHONORED, CANCELED
 }

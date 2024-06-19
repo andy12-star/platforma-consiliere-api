@@ -3,7 +3,7 @@ package dev.ionitaandreea.platformaconsiliere.enums;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum RoleName {
-    ROLE_CUSTOMER ("role_customer"), ROLE_ADMIN ("role_admin");
+    ROLE_USER ("role_user"), ROLE_DOCTOR("role_doctor"), ROLE_ADMIN ("role_admin");
 
     private final String value;
 

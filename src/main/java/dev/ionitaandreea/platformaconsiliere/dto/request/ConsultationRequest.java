@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ConsultationRequest {
 
-    @NotNull(message="Id is required")
+
     private Long id;
 
     @NotNull(message="Duration is required")
