@@ -99,6 +99,7 @@ public class Mapper {
                 .location(appointment.getLocation())
                 .specialization(appointment.getSpecialization())
                 .date(appointment.getDate())
+                .doctor(toUserResponse(appointment.getDoctor()))
                 .build();
     }
 

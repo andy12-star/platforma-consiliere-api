@@ -20,4 +20,6 @@ public class AppointmentResponse {
     private String specialization;
 
     private LocalDateTime date;
+
+    private UserResponse doctor;
 }

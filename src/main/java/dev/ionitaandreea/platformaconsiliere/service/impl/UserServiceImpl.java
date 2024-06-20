@@ -1,6 +1,7 @@
 package dev.ionitaandreea.platformaconsiliere.service.impl;
 
 import dev.ionitaandreea.platformaconsiliere.dto.request.UserRegistrationRequest;
+import dev.ionitaandreea.platformaconsiliere.dto.request.UserUpdateRequest;
 import dev.ionitaandreea.platformaconsiliere.dto.response.UserResponse;
 import dev.ionitaandreea.platformaconsiliere.entity.Role;
 import dev.ionitaandreea.platformaconsiliere.entity.User;
@@ -42,6 +43,7 @@ public class UserServiceImpl implements UserService {
                 .password(passwordEncoder.encode(userRegistrationRequest.getPassword()))
                 .phoneNumber(userRegistrationRequest.getPhoneNumber())
                 .dateOfBirth(userRegistrationRequest.getDateOfBirth())
+                .faculty(userRegistrationRequest.getFaculty())
                 .roles(Collections.singleton(role))
                 .accountNonExpired(true)
                 .accountNonLocked(true)
@@ -63,6 +65,24 @@ public class UserServiceImpl implements UserService {
     public User getUserById(Long id) {
         return userRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
+
+    @Override
+    public UserResponse updateUser(Long id, UserUpdateRequest userUpdateRequest) {
+
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setFirstName(userUpdateRequest.getFirstName());
+        user.setLastName(userUpdateRequest.getLastName());
+        user.setDateOfBirth(userUpdateRequest.getDateOfBirth());
+        user.setUsername(userUpdateRequest.getUsername());
+        user.setPhoneNumber(userUpdateRequest.getPhoneNumber());
+        user.setFaculty(userUpdateRequest.getFaculty());
+
+        userRepository.save(user);
+
+        return Mapper.toUserResponse(user);
+    }
+
 
 
 }

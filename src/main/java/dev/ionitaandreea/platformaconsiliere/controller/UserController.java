@@ -2,6 +2,7 @@ package dev.ionitaandreea.platformaconsiliere.controller;
 
 import dev.ionitaandreea.platformaconsiliere.common.ResponseObject;
 import dev.ionitaandreea.platformaconsiliere.dto.request.UserRegistrationRequest;
+import dev.ionitaandreea.platformaconsiliere.dto.request.UserUpdateRequest;
 import dev.ionitaandreea.platformaconsiliere.dto.response.UserResponse;
 import dev.ionitaandreea.platformaconsiliere.service.api.UserService;
 import jakarta.validation.Valid;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,4 +46,19 @@ public class UserController {
                 .data(userService.getAllUsers(pageable))
                 .build();
     }
+
+    @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('users:read')")
+    public ResponseObject<UserResponse> updateUser(@PathVariable Long id, @RequestBody @Valid UserUpdateRequest userUpdateRequest) {
+        log.info("Received user update request for user id: {}", id);
+
+        return ResponseObject.<UserResponse>builder()
+                .status(ResponseObject.ResponseStatus.SUCCESSFUL)
+                .message("User updated successfully")
+                .data(userService.updateUser(id, userUpdateRequest))
+                .build();
+    }
+
+
+
 }
