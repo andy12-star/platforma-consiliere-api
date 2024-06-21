@@ -8,6 +8,7 @@ import dev.ionitaandreea.platformaconsiliere.dto.response.AppointmentResponse;
 import dev.ionitaandreea.platformaconsiliere.entity.User;
 import dev.ionitaandreea.platformaconsiliere.mapper.Mapper;
 import dev.ionitaandreea.platformaconsiliere.service.api.AppointmentService;
+import dev.ionitaandreea.platformaconsiliere.service.api.ConsultationService;
 import dev.ionitaandreea.platformaconsiliere.service.api.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,7 @@ public class AppointmentController {
 
     private final AppointmentService appointmentService;
     private final UserService userService;
+    private final ConsultationService consultationService;
 
     @PostMapping()
     public ResponseEntity<?> saveAppointment(@RequestBody AppointmentRequest appointmentRequest) {

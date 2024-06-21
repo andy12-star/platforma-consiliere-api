@@ -47,7 +47,8 @@ public class ConsultationServiceImpl implements ConsultationService {
 
     @Override
     public Consultation getConsultationByAppointmentId(Long appointmentId) {
-        return consultationRepository.findByAppointment_Id(appointmentId);
+        return consultationRepository.findByAppointment_Id(appointmentId).orElseThrow(()
+                -> new IllegalArgumentException("No appointment existing with the given id!"));
     }
 
     @Override

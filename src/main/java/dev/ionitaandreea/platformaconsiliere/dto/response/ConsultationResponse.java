@@ -1,5 +1,6 @@
 package dev.ionitaandreea.platformaconsiliere.dto.response;
 
+import dev.ionitaandreea.platformaconsiliere.enums.AppointmentType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,6 +29,8 @@ public class ConsultationResponse {
     private String specialization;
 
     private LocalDateTime date;
+
+    private AppointmentType appointmentType;
 
 }
 

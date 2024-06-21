@@ -129,6 +129,7 @@ public class Mapper {
                 .patientName(patientName)
                 .date(consultation.getAppointment().getDate())
                 .specialization(consultation.getAppointment().getSpecialization())
+                .appointmentType(consultation.getAppointment().getAppointmentType())
                 .build();
     }
 }

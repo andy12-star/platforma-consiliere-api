@@ -4,6 +4,7 @@ import dev.ionitaandreea.platformaconsiliere.entity.Consultation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ConsultationRepository extends JpaRepository<Consultation,Long> {
 
@@ -12,6 +13,6 @@ public interface ConsultationRepository extends JpaRepository<Consultation,Long>
 
     List<Consultation> findAllByAppointment_Doctor_IdAndAppointment_Patient_Id(Long doctorId, Long patientId);
 
-    Consultation findByAppointment_Id(Long appointmentId);
+    Optional<Consultation> findByAppointment_Id(Long appointmentId);
 }
 
