@@ -7,4 +7,6 @@ import java.util.Set;
 public interface PatientService {
 
     Set<UserResponse> getAllPatientsForDoctor(Long doctorId);
+
+    Set<UserResponse> getAllPatients();
 }

@@ -17,6 +17,11 @@ public class PatientsController {
 
     private final PatientService patientService;
 
+    @GetMapping()
+    public ResponseEntity<?> getAllPatients() {
+        return ResponseEntity.ok(patientService.getAllPatients());
+    }
+
     @GetMapping("/{doctorId}")
     public ResponseEntity<?> getAllPatientsByDoctor(@PathVariable Long doctorId){
         return ResponseEntity.ok(patientService.getAllPatientsForDoctor(doctorId));

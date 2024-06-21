@@ -22,4 +22,9 @@ public class DoctorController {
     public ResponseEntity<?> getAllDoctors(){
         return ResponseEntity.ok(doctorService.getAllDoctors());
     }
+
+    @GetMapping("/{patientId}")
+    public ResponseEntity<?> getAllDoctorsByPatient(@PathVariable Long patientId) {
+        return ResponseEntity.ok(doctorService.getAllDoctorsForPatient(patientId));
+    }
 }

@@ -100,6 +100,8 @@ public class Mapper {
                 .specialization(appointment.getSpecialization())
                 .date(appointment.getDate())
                 .doctor(toUserResponse(appointment.getDoctor()))
+                .patient(toUserResponse(appointment.getPatient()))
+                .appointmentType(appointment.getAppointmentType())
                 .build();
     }
 

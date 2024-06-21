@@ -1,5 +1,6 @@
 package dev.ionitaandreea.platformaconsiliere.service.api;
 
+import dev.ionitaandreea.platformaconsiliere.dto.request.AppointmentUpdateRequest;
 import dev.ionitaandreea.platformaconsiliere.dto.response.AppointmentResponse;
 import dev.ionitaandreea.platformaconsiliere.entity.Appointment;
 
@@ -17,4 +18,5 @@ public interface AppointmentService {
 
     Appointment getAppointmentById(Long id);
 
+    AppointmentResponse updateAppointment(Long id, AppointmentUpdateRequest appointmentUpdateRequest);
 }
