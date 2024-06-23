@@ -47,6 +47,6 @@ public class EmailServiceImpl implements EmailService {
 
         mailSender.send(message);
 
-        log.info("Email sent succesffully");
+        log.info("Email sent successfully");
     }
 }
