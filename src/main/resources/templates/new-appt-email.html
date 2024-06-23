@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New Appointment</title>
+</head>
+<body>
+<p>Dragă <span th:text="${appointment.doctorName}"></span>,</p>
+<p>O nouă programare a fost înregistrată:</p>
+<p>
+    <strong>Dată:</strong> <span th:text="${appointment.date}"></span><br>
+    <strong>Oră:</strong> <span th:text="${appointment.time}"></span><br>
+    <strong>Locație:</strong> <span th:text="${appointment.location}"></span><br>
+    <strong>Specializare:</strong> <span th:text="${appointment.specialization}"></span><br>
+    <strong>Pacient:</strong> <span th:text="${appointment.patientName}"></span><br>
+</p>
+<p>Mulțumiri,</p>
+<p>Plaftorma Consiliere Pentru Studenti</p>
+</body>
+</html>

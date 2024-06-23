@@ -13,6 +13,19 @@ spring:
     password: postgres
     url: jdbc:postgresql://localhost:5431/platforma-consiliere
     username: postgres
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: theodor.ciobanoiu@gmail.com
+    password: ${EMAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
   jpa:
     properties:
       hibernate:

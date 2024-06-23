@@ -60,7 +60,6 @@ public class ConsultationController {
     }
 
     @PutMapping("{id}")
-    @PreAuthorize("hasAuthority('user:read')")
     public ResponseObject<ConsultationResponse> updateConsultation(@PathVariable Long id, @RequestBody ConsultationUpdateRequest consultationUpdateRequest) {
         log.info("Received consultation update request for consultation with id {}", id);
 

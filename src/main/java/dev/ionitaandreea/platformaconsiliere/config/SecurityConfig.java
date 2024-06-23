@@ -51,7 +51,7 @@ public class SecurityConfig {
                 .addFilterAfter(jwtTokenVerifierFilter, ExceptionHandlerFilter.class)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/api/v1/users", "/api/v1/auth/login",
-                                "/api/v1/auth/refresh").permitAll()
+                                "/api/v1/auth/refresh", "api/v1/email/contact").permitAll()
                         .anyRequest()
                         .authenticated()
                 )

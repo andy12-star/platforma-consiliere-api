@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface AppointmentService {
 
-    Appointment saveAppointment(Appointment appointment);
+    void saveAppointment(Appointment appointment);
 
     void deleteAppointment(Long appointmentId);
 

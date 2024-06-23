@@ -1,6 +1,7 @@
 package dev.ionitaandreea.platformaconsiliere.mapper;
 
 import dev.ionitaandreea.platformaconsiliere.dto.CustomUserDetails;
+import dev.ionitaandreea.platformaconsiliere.dto.email.NewApptTemplate;
 import dev.ionitaandreea.platformaconsiliere.dto.request.AppointmentRequest;
 import dev.ionitaandreea.platformaconsiliere.dto.request.ConsultationRequest;
 import dev.ionitaandreea.platformaconsiliere.dto.request.NotesRequest;
@@ -13,6 +14,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -130,6 +132,17 @@ public class Mapper {
                 .date(consultation.getAppointment().getDate())
                 .specialization(consultation.getAppointment().getSpecialization())
                 .appointmentType(consultation.getAppointment().getAppointmentType())
+                .build();
+    }
+
+    public static NewApptTemplate toNewApptTemplate(Appointment appointment) {
+        return NewApptTemplate.builder()
+                .doctorName(appointment.getDoctor().getFirstName() + " " + appointment.getDoctor().getLastName())
+                .patientName(appointment.getPatient().getFirstName() + " " + appointment.getPatient().getLastName())
+                .date(appointment.getDate().format(DateTimeFormatter.ISO_LOCAL_DATE))
+                .time(appointment.getDate().format(DateTimeFormatter.ISO_LOCAL_TIME))
+                .location(appointment.getLocation())
+                .specialization(appointment.getSpecialization())
                 .build();
     }
 }

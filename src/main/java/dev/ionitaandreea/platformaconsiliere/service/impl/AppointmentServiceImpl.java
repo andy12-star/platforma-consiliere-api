@@ -11,12 +11,16 @@ import dev.ionitaandreea.platformaconsiliere.repository.AppointmentRepository;
 import dev.ionitaandreea.platformaconsiliere.repository.ConsultationRepository;
 import dev.ionitaandreea.platformaconsiliere.service.api.AppointmentService;
 import dev.ionitaandreea.platformaconsiliere.service.api.ConsultationService;
+import dev.ionitaandreea.platformaconsiliere.service.api.EmailService;
 import dev.ionitaandreea.platformaconsiliere.service.api.UserService;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
@@ -24,15 +28,20 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AppointmentServiceImpl implements AppointmentService {
 
+    private static final String EMAIL_SUBJECT = "New appointment added to your schedule";
+    private static final String EMAIL_TEMPLATE = "new-appt-email";
+
     private final AppointmentRepository appointmentRepository;
     private final UserService userService;
     private final ConsultationService consultationService;
     private final ConsultationRepository consultationRepository;
+    private final EmailService emailService;
 
 
     @Override
-    public Appointment saveAppointment(Appointment appointment) {
-        return appointmentRepository.save(appointment);
+    public void saveAppointment(Appointment appointment) {
+        Appointment savedAppt = appointmentRepository.save(appointment);
+        sendEmailForNewAppointment(savedAppt);
     }
 
     @Override
@@ -111,6 +120,23 @@ public class AppointmentServiceImpl implements AppointmentService {
         Consultation consultation = consultationService.getConsultationByAppointmentId(appointment.getId());
         consultationService.deleteConsultation(consultation.getId());
         log.info("Consultation deleted for appointment with id {}", appointment.getId());
+    }
+
+    private void sendEmailForNewAppointment(Appointment savedAppt) {
+        Map<String, Object> templateModel = new HashMap<>();
+        templateModel.put("appointment", Mapper.toNewApptTemplate(savedAppt));
+
+        try {
+            emailService.sendTemplateEmail(
+//                    savedAppt.getDoctor().getUsername(),
+                    "ionitaandy@gmail.com",
+                    EMAIL_SUBJECT,
+                    EMAIL_TEMPLATE,
+                    templateModel
+            );
+        } catch (MessagingException e) {
+            log.error("Failed to send email for new appointment");
+        }
     }
 
 
