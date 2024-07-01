@@ -1,0 +1,67 @@
+<code_scheme name="CodeStyle" version="173">
+    <option name="OTHER_INDENT_OPTIONS">
+        <value>
+            <option name="CONTINUATION_INDENT_SIZE" value="4"/>
+        </value>
+    </option>
+    <option name="RIGHT_MARGIN" value="120"/> <!-- Adjust how long can the code lines be -->
+    <JavaCodeStyleSettings><!-- import classes not using *  -->
+        <option name="CLASS_COUNT_TO_USE_IMPORT_ON_DEMAND" value="999"/>
+        <option name="NAMES_COUNT_TO_USE_IMPORT_ON_DEMAND" value="999"/>
+    </JavaCodeStyleSettings>
+    <codeStyleSettings language="JAVA">
+        <option name="KEEP_CONTROL_STATEMENT_IN_ONE_LINE"
+                value="false"/> <!-- keep or not the control statement in one line when applying reformatting rules -->
+        <option name="KEEP_BLANK_LINES_IN_CODE"
+                value="1"/>  <!-- How many consecutive blank lines are allowed in the code -->
+        <option name="BLANK_LINES_AFTER_CLASS_HEADER"
+                value="1"/> <!-- How many consecutive blank lines are allowed after  the header -->
+        <option name="ALIGN_MULTILINE_PARAMETERS"
+                value="false"/> <!-- When multiple parameters in a method, when writing on multiple lines, the parameters will align with the first one -->
+        <option name="ALIGN_MULTILINE_RESOURCES"
+                value="true"/> <!-- Align parameters for try with resources when on multiple lines -->
+        <option name="ALIGN_MULTILINE_FOR"
+                value="true"/> <!-- Align to the first '(' when having a for on multiple lines -->
+        <option name="CALL_PARAMETERS_WRAP"
+                value="1"/> <!-- On method call arguments: 0 - Do not wrap (lets it as is) 1- Wrap if long (puts arguments on new line)-->
+        <option name="METHOD_PARAMETERS_WRAP"
+                value="1"/> <!-- On method parameters: 0 - Do not wrap (lets it as is) 1- Wrap if long (puts arguments on new line)-->
+        <option name="EXTENDS_LIST_WRAP"
+                value="1"/> <!-- On 'Extents/Implements' list: 0 - Do not wrap (lets it as is) 1- Wrap if long (puts arguments on new line)-->
+        <option name="THROWS_KEYWORD_WRAP"
+                value="1"/> <!-- On 'throws' list : 0 - Do not wrap (lets it as is) 1- Wrap if long (puts arguments on new line)-->
+        <option name="METHOD_CALL_CHAIN_WRAP"
+                value="1"/> <!-- On chain method calls: 0 - Do not wrap (lets it as is) 1- Wrap if long (puts arguments on new line)-->
+        <option name="BINARY_OPERATION_WRAP"
+                value="1"/> <!-- On binary expresions: 0 - Do not wrap (lets it as is) 1- Wrap if long (puts arguments on new line)-->
+        <option name="BINARY_OPERATION_SIGN_ON_NEXT_LINE"
+                value="true"/> <!-- Adds the operator sign on a new line or on previous line when wrapping-->
+        <option name="TERNARY_OPERATION_WRAP"
+                value="1"/> <!-- On ternary operator: 0 - Do not wrap (lets it as is) 1- Wrap if long (puts arguments on new line)-->
+        <option name="TERNARY_OPERATION_SIGNS_ON_NEXT_LINE"
+                value="true"/><!-- Adds '?' and ':' on a new line or on previous line when wrapping-->
+        <option name="FOR_STATEMENT_WRAP"
+                value="1"/> <!-- On for statement: 0 - Do not wrap (lets it as is) 1- Wrap if long (puts arguments on new line)-->
+        <option name="ARRAY_INITIALIZER_WRAP"
+                value="1"/> <!-- On initializing an array: 0 - Do not wrap (lets it as is) 1- Wrap if long (puts arguments on new line)-->
+        <option name="WRAP_COMMENTS" value="true"/> <!-- wrap comments if too long -->
+        <option name="IF_BRACE_FORCE"
+                value="3"/> <!-- force braces on if statement: 1 - Do not force, 2 - When multiline, 3 - Always  -->
+        <option name="DOWHILE_BRACE_FORCE"
+                value="3"/> <!-- force braces on do-while: 1 - Do not force, 2 - When multiline, 3 - Always  -->
+        <option name="WHILE_BRACE_FORCE"
+                value="3"/> <!-- force braces on while statement: 1 - Do not force, 2 - When multiline, 3 - Always  -->
+        <option name="FOR_BRACE_FORCE"
+                value="3"/> <!-- force braces on for statement: 1 - Do not force, 2 - When multiline, 3 - Always  -->
+        <indentOptions>
+            <option name="CONTINUATION_INDENT_SIZE" value="4"/>
+        </indentOptions>
+    </codeStyleSettings>
+    <codeStyleSettings language="JSON">
+        <indentOptions>
+            <option name="CONTINUATION_INDENT_SIZE" value="4"/>
+            <option name="TAB_SIZE" value="2"/>
+        </indentOptions>
+    </codeStyleSettings>
+
+</code_scheme>

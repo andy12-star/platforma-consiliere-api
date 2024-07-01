@@ -41,7 +41,7 @@ public class EmailController {
 
         try {
             emailService.sendTemplateEmail(
-                    "theodor.ciobanoiu@gmail.com",
+                "platforma.consiliere.studenti@gmail.com",
                     EMAIL_SUBJECT,
                     EMAIL_TEMPLATE,
                     templateModel

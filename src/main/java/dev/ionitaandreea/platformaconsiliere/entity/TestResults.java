@@ -1,6 +1,5 @@
 package dev.ionitaandreea.platformaconsiliere.entity;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,19 +16,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "consultations")
-public class Consultation {
+@Table(name = "test_results")
+public class TestResults {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int duration;
-
-    private String observations;
-
-    private String recommendations;
-
     @OneToOne
-    private Appointment appointment;
+    private User patient;
+
+    private Double personality;
+
+    private Double smi;
+
+    private Double ysqEmotionalPrivacy;
+
+    private Double ysqInstability;
+
+    private Double ysqDoubt;
 }

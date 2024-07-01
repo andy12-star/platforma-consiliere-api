@@ -52,13 +52,13 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public List<AppointmentResponse> getAllAppointmentsByPatientId(Long patientId) {
         return appointmentRepository.findAllByPatient_Id(patientId).stream()
-                .map(Mapper::toAppointmentResponse).toList();
+            .map(Mapper::toAppointmentResponse).toList();
     }
 
     @Override
     public List<AppointmentResponse> getAllAppointmentsByDoctorId(Long doctorId) {
         return appointmentRepository.findAllByDoctor_Id(doctorId).stream()
-                .map(Mapper::toAppointmentResponse).toList();
+            .map(Mapper::toAppointmentResponse).toList();
     }
 
     @Override
@@ -68,29 +68,28 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public AppointmentResponse updateAppointment(Long id, AppointmentUpdateRequest appointmentUpdateRequest) {
+    public AppointmentResponse updateAppointment(Long id,
+        AppointmentUpdateRequest appointmentUpdateRequest) {
         Appointment appointment = appointmentRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("appointment not found"));
+            .orElseThrow(() -> new RuntimeException("appointment not found"));
         User doctor = userService.getUserById(appointmentUpdateRequest.getDoctorId());
-
         if (appointmentTypeIsChangedToHonored(appointment, appointmentUpdateRequest)) {
-            Optional<Consultation> optApptConsultation = consultationRepository.findByAppointment_Id(appointment.getId());
+            Optional<Consultation> optApptConsultation = consultationRepository.findByAppointment_Id(
+                appointment.getId());
             if (optApptConsultation.isEmpty()) {
                 createConsultationForAppointment(appointment);
             }
         } else if (appointmentTypeIsChangedFromHonored(appointment, appointmentUpdateRequest)) {
             deleteConsultationForAppointment(appointment);
         }
-
         updateAppointmentData(appointmentUpdateRequest, appointment, doctor);
-
         appointmentRepository.save(appointment);
-
         return Mapper.toAppointmentResponse(appointment);
 
     }
 
-    private void updateAppointmentData(AppointmentUpdateRequest appointmentUpdateRequest, Appointment appointment, User doctor) {
+    private void updateAppointmentData(AppointmentUpdateRequest appointmentUpdateRequest,
+        Appointment appointment, User doctor) {
         appointment.setAppointmentType(appointmentUpdateRequest.getAppointmentType());
         appointment.setSpecialization(appointmentUpdateRequest.getSpecialization());
         appointment.setDoctor(doctor);
@@ -98,41 +97,39 @@ public class AppointmentServiceImpl implements AppointmentService {
         appointment.setLocation(appointmentUpdateRequest.getLocation());
     }
 
-    private boolean appointmentTypeIsChangedToHonored(Appointment appointment, AppointmentUpdateRequest appointmentUpdateRequest) {
+    private boolean appointmentTypeIsChangedToHonored(Appointment appointment,
+        AppointmentUpdateRequest appointmentUpdateRequest) {
         return !appointment.getAppointmentType().equals(AppointmentType.HONORED)
-               && appointmentUpdateRequest.getAppointmentType().equals(AppointmentType.HONORED);
+            && appointmentUpdateRequest.getAppointmentType().equals(AppointmentType.HONORED);
     }
 
-    private boolean appointmentTypeIsChangedFromHonored(Appointment appointment, AppointmentUpdateRequest appointmentUpdateRequest) {
+    private boolean appointmentTypeIsChangedFromHonored(Appointment appointment,
+        AppointmentUpdateRequest appointmentUpdateRequest) {
         return appointment.getAppointmentType().equals(AppointmentType.HONORED)
-               && !appointmentUpdateRequest.getAppointmentType().equals(AppointmentType.HONORED);
+            && !appointmentUpdateRequest.getAppointmentType().equals(AppointmentType.HONORED);
     }
-
     private void createConsultationForAppointment(Appointment appointment) {
         Consultation consultation = Consultation.builder()
-                .appointment(appointment)
-                .build();
+            .appointment(appointment)
+            .build();
         consultationService.saveConsultation(consultation);
         log.info("Consultation created for appointment with id {}", appointment.getId());
     }
-
     private void deleteConsultationForAppointment(Appointment appointment) {
         Consultation consultation = consultationService.getConsultationByAppointmentId(appointment.getId());
         consultationService.deleteConsultation(consultation.getId());
         log.info("Consultation deleted for appointment with id {}", appointment.getId());
     }
-
     private void sendEmailForNewAppointment(Appointment savedAppt) {
         Map<String, Object> templateModel = new HashMap<>();
         templateModel.put("appointment", Mapper.toNewApptTemplate(savedAppt));
-
         try {
             emailService.sendTemplateEmail(
 //                    savedAppt.getDoctor().getUsername(),
-                    "ionitaandy@gmail.com",
-                    EMAIL_SUBJECT,
-                    EMAIL_TEMPLATE,
-                    templateModel
+                "platforma.consiliere.studenti@gmail.com",
+                EMAIL_SUBJECT,
+                EMAIL_TEMPLATE,
+                templateModel
             );
         } catch (MessagingException e) {
             log.error("Failed to send email for new appointment");

@@ -14,7 +14,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/consultation")
@@ -27,30 +34,31 @@ public class ConsultationController {
     private final AppointmentServiceImpl appointmentServiceImpl;
 
     @PostMapping
-    public ResponseEntity<?> saveConsultation(@RequestBody ConsultationRequest consultationRequest){
-        Appointment appointment= appointmentServiceImpl.getAppointmentById(consultationRequest.getAppointmentId());
-        consultationService.saveConsultation(Mapper.toConsultation(consultationRequest,appointment));
+    public ResponseEntity<?> saveConsultation(@RequestBody ConsultationRequest consultationRequest) {
+        Appointment appointment = appointmentServiceImpl.getAppointmentById(consultationRequest.getAppointmentId());
+        consultationService.saveConsultation(Mapper.toConsultation(consultationRequest, appointment));
         return ResponseEntity.ok("Consultation saved successfully");
     }
 
     @DeleteMapping("{consultationId}")
-    public ResponseEntity<?> deleteConsultation(@PathVariable Long consultationId){
+    public ResponseEntity<?> deleteConsultation(@PathVariable Long consultationId) {
         consultationService.deleteConsultation(consultationId);
         return ResponseEntity.status(200).body("Consultation deteled successfully");
     }
 
     @GetMapping("/doctor/{doctorId}")
-    public ResponseEntity <?> getAllConsultationByDoctor(@PathVariable Long doctorId){
+    public ResponseEntity<?> getAllConsultationByDoctor(@PathVariable Long doctorId) {
         return ResponseEntity.ok(consultationService.getAllConsultationsByDoctorId(doctorId));
     }
 
     @GetMapping("/doctor-patient/{doctorId}/{patientId}")
-    public ResponseEntity<?> getAllConsultationsForDoctorByPatient(@PathVariable Long doctorId, @PathVariable Long patientId) {
+    public ResponseEntity<?> getAllConsultationsForDoctorByPatient(@PathVariable Long doctorId,
+        @PathVariable Long patientId) {
         return ResponseEntity.ok(consultationService.getAllConsultationsForDoctorByPatient(doctorId, patientId));
     }
 
     @GetMapping("/patient/{patientId}")
-    public ResponseEntity <?> getAllConsultationByPatient(@PathVariable Long patientId){
+    public ResponseEntity<?> getAllConsultationByPatient(@PathVariable Long patientId) {
         return ResponseEntity.ok(consultationService.getAllConsultationsByPatientId(patientId));
     }
 
@@ -60,14 +68,15 @@ public class ConsultationController {
     }
 
     @PutMapping("{id}")
-    public ResponseObject<ConsultationResponse> updateConsultation(@PathVariable Long id, @RequestBody ConsultationUpdateRequest consultationUpdateRequest) {
+    public ResponseObject<ConsultationResponse> updateConsultation(@PathVariable Long id,
+        @RequestBody ConsultationUpdateRequest consultationUpdateRequest) {
         log.info("Received consultation update request for consultation with id {}", id);
 
         return ResponseObject.<ConsultationResponse>builder()
-                .status(ResponseObject.ResponseStatus.SUCCESSFUL)
-                .message("Cnsultation updated successfully")
-                .data(consultationService.updateConsultation(id, consultationUpdateRequest))
-                .build();
+            .status(ResponseObject.ResponseStatus.SUCCESSFUL)
+            .message("Consultation updated successfully")
+            .data(consultationService.updateConsultation(id, consultationUpdateRequest))
+            .build();
     }
 
 }
